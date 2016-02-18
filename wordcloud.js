@@ -1,7 +1,7 @@
 d3.csv("wc_result.csv", function(data){
 	var h = 800;
 	var w = 800;
-	data = data.splice(0, 1000); //処理wordを1200件に絞る
+	data = data.splice(0, 200); //処理wordを1200件に絞る
 
 	var random = d3.random.irwinHall(2)
 
@@ -48,7 +48,12 @@ d3.csv("wc_result.csv", function(data){
 				return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
 			}
 		})
-		.text(function(d) { return d.text; });
+		.text(function(d) { return d.text; })
+		.on("click", function(d, i){
+			var url = "http://www.google.co.jp/search?q=" + d.text
+			window.open(url, "_blank");
+		});
+
 	}
 
 });
